@@ -1,0 +1,30 @@
+package com.ruleengine.api;
+
+import com.ruleengine.ast.Node;
+import com.ruleengine.service.RuleService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/rules")
+public class RuleController {
+
+    @Autowired
+    private RuleService ruleService;
+
+    @PostMapping("/create")
+    public Node createRule(@RequestBody String ruleString) {
+        return ruleService.createRule(ruleString);
+    }
+
+    @PostMapping("/combine")
+    public Node combineRules(@RequestBody String[] rules) {
+        return ruleService.combineRules(rules);
+    }
+
+    @PostMapping("/evaluate")
+    public boolean evaluateRule(@RequestBody String jsonRule, @RequestBody String jsonData) {
+        return ruleService.evaluateRule(jsonRule, jsonData);
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Engine UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rule Engine</h1>
+
+        <div class="form-section">
+            <h2>Create Rule</h2>
+            <input type="text" id="ruleInput" placeholder="Enter rule (e.g. age > 30 AND department = 'Sales')" />
+            <button id="createRuleBtn">Create Rule</button>
+        </div>
+
+        <div class="form-section">
+            <h2>Combine Rules</h2>
+            <textarea id="combineRulesInput" placeholder="Enter rules separated by commas"></textarea>
+            <button id="combineRulesBtn">Combine Rules</button>
+        </div>
+
+        <div class="form-section">
+            <h2>Evaluate Rule</h2>
+            <textarea id="evaluateRuleInput" placeholder="Enter rule (in JSON format)"></textarea>
+            <textarea id="evaluateDataInput" placeholder="Enter data (e.g. { 'age': 35, 'department': 'Sales', 'salary': 60000 })"></textarea>
+            <button id="evaluateRuleBtn">Evaluate Rule</button>
+        </div>
+
+        <h2>Results</h2>
+        <pre id="results"></pre>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

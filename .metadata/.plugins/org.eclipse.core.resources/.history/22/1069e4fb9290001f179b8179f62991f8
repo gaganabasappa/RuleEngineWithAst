@@ -1,0 +1,93 @@
+async function createRule() {
+    const ruleString = document.getElementById('ruleInput').value;
+
+    if (!ruleString.trim()) {
+        displayResult({ error: 'Please enter a rule.' });
+        return;
+    }
+
+    try {
+        const response = await fetch(`${apiBaseUrl}/create`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ rule: ruleString }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to create rule. Server responded with status ${response.status}`);
+        }
+
+        const result = await response.json();
+        displayResult(result);
+    } catch (error) {
+        displayResult({ error: `Error creating rule: ${error.message}` });
+    }
+}
+
+async function combineRules() {
+    const rulesInput = document.getElementById('combineRulesInput').value;
+    const rules = rulesInput.split(',').map(rule => rule.trim());
+
+    if (rules.length === 0 || !rules[0]) {
+        displayResult({ error: 'Please enter at least one rule to combine.' });
+        return;
+    }
+
+    try {
+        const response = await fetch(`${apiBaseUrl}/combine`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ rules }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to combine rules. Server responded with status ${response.status}`);
+        }
+
+        const result = await response.json();
+        displayResult(result);
+    } catch (error) {
+        displayResult({ error: `Error combining rules: ${error.message}` });
+    }
+}
+
+async function evaluateRule() {
+    const rule = document.getElementById('evaluateRuleInput').value;
+    const dataInput = document.getElementById('evaluateDataInput').value;
+
+    if (!rule.trim() || !dataInput.trim()) {
+        displayResult({ error: 'Please enter both rule and data to evaluate.' });
+        return;
+    }
+
+    let data;
+    try {
+        data = JSON.parse(dataInput);
+    } catch (error) {
+        displayResult({ error: 'Invalid JSON format for data.' });
+        return;
+    }
+
+    try {
+        const response = await fetch(`${apiBaseUrl}/evaluate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ rule, data }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to evaluate rule. Server responded with status ${response.status}`);
+        }
+
+        const result = await response.json();
+        displayResult(result);
+    } catch (error) {
+        displayResult({ error: `Error evaluating rule: ${error.message}` });
+    }
+}

@@ -1,0 +1,14 @@
+package com.ruleengine.utils;
+
+
+import com.ruleengine.ast.Node;
+import com.ruleengine.ast.OperatorNode;
+import com.ruleengine.ast.OperandNode;
+
+public class RuleParser {
+    public static Node parseRule(String ruleString) {
+        // Implement parsing logic to convert the rule string into an AST
+        // For example, parsing "age > 30 AND salary > 50000"
+        return null; // Placeholder
+    }
+}

@@ -1,0 +1,35 @@
+package com.ruleengine.tests;
+
+package com.example.ruleengine;
+
+import com.ruleengine.ast.Node;
+import com.ruleengine.service.RuleService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+public class RuleEngineTests {
+
+    @Autowired
+    private RuleService ruleService;
+
+    @Test
+    public void testCreateRule() {
+        String ruleString = "(age > 30 AND department = 'Sales') OR (age < 25 AND department = 'Marketing')";
+        Node node = ruleService.createRule(ruleString);
+        assertNotNull(node);
+        // Add more assertions based on the parsed tree structure
+    }
+
+    @Test
+    public void testEvaluateRule() {
+        String ruleString = "age > 30";
+        String jsonData = "{\"age\": 35, \"department\": \"Sales\", \"salary\": 60000, \"experience\": 3}";
+        boolean result = ruleService.evaluateRule(ruleString, jsonData);
+        assertTrue(result);
+    }
+}
+

@@ -1,0 +1,5 @@
+package com.ruleengine.service;
+
+public class RuleService {
+
+}

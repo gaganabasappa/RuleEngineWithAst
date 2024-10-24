@@ -1,0 +1,33 @@
+package com.ruleengine.model;
+
+package com.ruleengine.model;
+
+public class Rule {
+    private String rule;
+
+    // Default constructor (required for serialization/deserialization)
+    public Rule() {
+    }
+
+    // Constructor with parameters
+    public Rule(String rule) {
+        this.rule = rule;
+    }
+
+    // Getter for 'rule'
+    public String getRule() {
+        return rule;
+    }
+
+    // Setter for 'rule'
+    public void setRule(String rule) {
+        this.rule = rule;
+    }
+
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "rule='" + rule + '\'' +
+                '}';
+    }
+}

@@ -1,0 +1,27 @@
+package com.ruleengine.service;
+
+
+
+import com.ruleengine.ast.Node;
+import com.example.ruleengine.utils.RuleParser;
+import org.springframework.stereotype.Service;
+
+@Service
+public class RuleService {
+
+    public Node createRule(String ruleString) {
+        return RuleParser.parseRule(ruleString);
+    }
+
+    public Node combineRules(String[] rules) {
+        // Implement logic to combine rules
+        // Simplifying the combined rule AST
+        return null; // Placeholder
+    }
+
+    public boolean evaluateRule(String jsonRule, String jsonData) {
+        // Implement logic to evaluate the rule using the provided data
+        return false; // Placeholder
+    }
+}
+
